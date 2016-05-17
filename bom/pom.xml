@@ -30,12 +30,12 @@
 		<apache-ssh.version>0.11.0</apache-ssh.version>
 		<bluecove.version>2.1.1-SNAPSHOT</bluecove.version>
 		<californium-core.version>1.0.0-M3</californium-core.version>
-		<camel.version>2.16.2</camel.version>
+		<camel.version>2.17.0</camel.version>
 		<commons-exec.version>1.3</commons-exec.version>
-		<google-maps-services.version>0.1.11</google-maps-services.version>
-		<google-truth.version>0.27</google-truth.version>
+		<docker-client.version>3.5.12</docker-client.version>
+		<google-maps-services.version>0.1.12</google-maps-services.version>
+		<google-truth.version>0.28</google-truth.version>
 		<gpsd4java.version>1.4</gpsd4java.version>
-		<groovy.version>2.4.5</groovy.version>
 		<hadoop.version>2.2.0</hadoop.version>
 		<hamcrest.version>1.3</hamcrest.version>
 		<infinispan.version>8.0.0.Beta2</infinispan.version>
@@ -225,6 +225,11 @@
 				<version>${pubnub.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-client</artifactId>
+				<version>${docker-client.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>com.tinkerforge</groupId>
 				<artifactId>tinkerforge</artifactId>
 				<version>${tinkerforge.version}</version>
@@ -251,7 +256,7 @@
 			</dependency>
 			<dependency>
 				<groupId>io.rhiot</groupId>
-				<artifactId>rhiot-cloudplatform-camel-openalpr</artifactId>
+				<artifactId>rhiot-camel-openalpr</artifactId>
 				<version>${rhiot.version}</version>
 			</dependency>
 			<dependency>
@@ -403,6 +408,16 @@
 			</dependency>
 			<dependency>
 				<groupId>io.rhiot</groupId>
+				<artifactId>rhiot-sensor-device</artifactId>
+				<version>${rhiot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.rhiot</groupId>
+				<artifactId>rhiot-sensor-camera</artifactId>
+				<version>${rhiot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.rhiot</groupId>
 				<artifactId>rhiot-spring-activemq</artifactId>
 				<version>${rhiot.version}</version>
 			</dependency>
@@ -436,6 +451,11 @@
 			<dependency>
 				<groupId>io.rhiot</groupId>
 				<artifactId>rhiot-utils</artifactId>
+				<version>${rhiot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.rhiot</groupId>
+				<artifactId>rhiot-utils-docker</artifactId>
 				<version>${rhiot.version}</version>
 			</dependency>
 			<dependency>
@@ -493,6 +513,11 @@
 				<artifactId>camel-spark</artifactId>
 				<!-- Camel Spark is available starting from Camel 2.17 -->
 				<version>2.17-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-amqp</artifactId>
+				<version>2.16.2</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.commons</groupId>
@@ -564,16 +589,6 @@
 				<groupId>org.apache.sshd</groupId>
 				<artifactId>sshd-core</artifactId>
 				<version>${apache-ssh.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.codehaus.groovy</groupId>
-				<artifactId>groovy</artifactId>
-				<version>${groovy.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.codehaus.groovy</groupId>
-				<artifactId>groovy-all</artifactId>
-				<version>${groovy.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.eclipse.californium</groupId>

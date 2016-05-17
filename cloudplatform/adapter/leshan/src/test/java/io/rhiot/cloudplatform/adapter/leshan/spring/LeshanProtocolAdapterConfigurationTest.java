@@ -20,8 +20,8 @@ import com.google.common.truth.Truth;
 import io.rhiot.cloudplatform.runtime.spring.test.CloudPlatformTest;
 import io.rhiot.utils.leshan.client.LeshanClientTemplate;
 import io.rhiot.utils.leshan.client.UpdateRequestBuilder;
-import org.eclipse.cloudplatform.service.device.api.Device;
-import org.eclipse.cloudplatform.service.device.api.DeviceMetrics;
+import io.rhiot.cloudplatform.service.device.api.Device;
+import io.rhiot.cloudplatform.service.device.api.DeviceMetrics;
 import org.junit.After;
 import org.junit.Test;
 
@@ -29,9 +29,10 @@ import java.util.List;
 
 import static io.rhiot.cloudplatform.connector.Header.arguments;
 import static io.rhiot.utils.Networks.findAvailableTcpPort;
+import static io.rhiot.utils.Properties.setIntProperty;
 import static io.rhiot.utils.leshan.client.LeshanClientTemplate.createVirtualLeshanClientTemplate;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.eclipse.cloudplatform.service.device.api.DeviceConstants.*;
+import static io.rhiot.cloudplatform.service.device.api.DeviceConstants.*;
 
 public class LeshanProtocolAdapterConfigurationTest extends CloudPlatformTest {
 
@@ -45,7 +46,7 @@ public class LeshanProtocolAdapterConfigurationTest extends CloudPlatformTest {
 
     @Override
     protected void beforeCloudPlatformStarted() {
-        System.setProperty("spring.data.mongodb", findAvailableTcpPort() + "");
+        setIntProperty("spring.data.mongodb.port", findAvailableTcpPort());
         System.setProperty("AMQP_PORT", findAvailableTcpPort() + "");
         System.setProperty("MQTT_ENABLED", false + "");
     }

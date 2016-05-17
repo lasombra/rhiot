@@ -65,7 +65,9 @@ public class CloudPlatform {
     }
 
     public CloudPlatform stop() {
-        applicationContext.close();
+        if(applicationContext != null) {
+            applicationContext.close();
+        }
         return this;
     }
 
@@ -88,7 +90,7 @@ public class CloudPlatform {
     AMQPComponent amqp(@Value("${AMQP_SERVICE_HOST:localhost}") String amqpBrokerUrl,
             @Value("${AMQP_SERVICE_PORT:5672}") int amqpBrokerPort) throws MalformedURLException {
         LOG.debug("About to create AMQP component {}:{}", amqpBrokerUrl, amqpBrokerPort);
-        return amqp10Component("amqp://guest:guest@" + amqpBrokerUrl + ":" + amqpBrokerPort);
+        return amqp10Component("amqp://" + amqpBrokerUrl + ":" + amqpBrokerPort);
     }
 
     @Bean

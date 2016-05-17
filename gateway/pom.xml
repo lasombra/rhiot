@@ -22,6 +22,7 @@
 
     <modules>
         <module>components</module>
+        <module>sensors</module>
         <module>gateway</module>
         <module>gateway-app</module>
     </modules>

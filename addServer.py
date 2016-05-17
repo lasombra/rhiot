@@ -20,6 +20,8 @@ import os
 import os.path
 import xml.dom.minidom
 
+print 'Editing Maven settings...'
+
 if os.environ["TRAVIS_SECURE_ENV_VARS"] == "false":
   print "no secure env vars available, skipping deployment"
   sys.exit()
@@ -42,7 +44,9 @@ sonatypeServerUser = m2.createElement("username")
 sonatypeServerPass = m2.createElement("password")
 
 idNode = m2.createTextNode("ossrh")
+print 'Reading Sonatype username...'
 userNode = m2.createTextNode(os.environ["SONATYPE_USERNAME"])
+print 'Reading Sonatype password...'
 passNode = m2.createTextNode(os.environ["SONATYPE_PASSWORD"])
 
 sonatypeServerId.appendChild(idNode)
@@ -54,6 +58,29 @@ sonatypeServerNode.appendChild(sonatypeServerUser)
 sonatypeServerNode.appendChild(sonatypeServerPass)
 
 serversNode.appendChild(sonatypeServerNode)
+
+print 'Added Sonatype configuration.'
+
+dockerHub = m2.createElement("server")
+dockerHubId = m2.createElement("id")
+dockerHubUsername = m2.createElement("username")
+dockerHubPassword = m2.createElement("password")
+
+dockerHubIdNode = m2.createTextNode("registry.hub.docker.com")
+dockerHubUsernameNode = m2.createTextNode(os.environ["DOCKER_USERNAME"])
+dockerHubPasswordNode = m2.createTextNode(os.environ["DOCKER_PASSWORD"])
+
+dockerHubId.appendChild(dockerHubIdNode)
+dockerHubUsername.appendChild(dockerHubUsernameNode)
+dockerHubPassword.appendChild(dockerHubPasswordNode)
+
+dockerHub.appendChild(dockerHubId)
+dockerHub.appendChild(dockerHubUsername)
+dockerHub.appendChild(dockerHubPassword)
+
+serversNode.appendChild(dockerHub)
+
+print 'Added DockerHub configuration.'
 
 m2Str = m2.toxml()
 f = open(homedir + '/.m2/mySettings.xml', 'w')

@@ -21,7 +21,7 @@ import org.apache.commons.io.IOUtils;
 import java.io.IOException;
 import java.util.List;
 
-public class DefaultProcessManager implements ProcessManager {
+public class DefaultProcessManager extends ExecutorBasedProcessManager {
 
     @Override
     public List<String> executeAndJoinOutput(String... command) {

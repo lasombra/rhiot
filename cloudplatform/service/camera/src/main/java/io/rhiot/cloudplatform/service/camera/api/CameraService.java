@@ -23,10 +23,15 @@ import java.util.List;
  */
 public interface CameraService {
 
+    /**
+     * Analyzes image against presence of license plates.
+     *
+     * @param country expected country of the plate. Can be 'us' or 'eu'.
+     * @param imageData binary data of an image to analyze
+     * @return list of possible recognition matches. The best matches come first.
+     */
     List<PlateMatch> recognizePlate(String country, byte[] imageData);
 
     void process(String deviceId, String country, byte[] imageData);
-
-    void processPlate(String imageId, String country);
 
 }

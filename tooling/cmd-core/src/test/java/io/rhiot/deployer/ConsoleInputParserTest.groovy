@@ -16,6 +16,9 @@
  */
 package io.rhiot.deployer
 
+import io.rhiot.cmd.ConsoleInformation
+import io.rhiot.cmd.ConsoleInputParser
+
 import static com.google.common.truth.Truth.assertThat
 
 import org.junit.Assert
@@ -78,4 +81,9 @@ class ConsoleInputParserTest extends Assert {
     void shouldParseEmptyGatewayArtifact() {
         assertThat(new ConsoleInputParser('--someRandomOption').artifact().isPresent()).isFalse()
     }
+	
+	@Test
+	void shouldDebug() {
+		assertThat(new ConsoleInputParser("-d","device-scan").isDebug()).isTrue()
+	}
 }

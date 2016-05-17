@@ -17,6 +17,7 @@
 package io.rhiot.datastream.document.mongodb
 
 import com.mongodb.Mongo
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -25,6 +26,7 @@ import static io.rhiot.utils.Properties.stringProperty
 @Configuration
 class MongodbDocumentStoreFactory {
 
+    @ConditionalOnMissingBean(type = 'io.rhiot.cloudplatform.service.document.api.DocumentStore')
     @Bean(name = 'document')
     MongodbDocumentStore mongodbDocumentStore(Mongo mongo) {
         new MongodbDocumentStore(

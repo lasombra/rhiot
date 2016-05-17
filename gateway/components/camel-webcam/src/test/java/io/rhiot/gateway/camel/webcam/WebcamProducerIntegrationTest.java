@@ -29,6 +29,9 @@ import java.io.ByteArrayInputStream;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import static java.lang.Boolean.parseBoolean;
+import static java.lang.System.getenv;
+import static org.junit.Assume.assumeFalse;
 import static org.junit.Assume.assumeTrue;
 
 public class WebcamProducerIntegrationTest extends CamelTestSupport {
@@ -38,12 +41,14 @@ public class WebcamProducerIntegrationTest extends CamelTestSupport {
 
     @BeforeClass
     public static void before(){
+        assumeFalse(parseBoolean(getenv("IS_TRAVIS")));
         assumeTrue(WebcamHelper.isWebcamPresent());
     }
 
     @AfterClass
     public static void after() throws TimeoutException {
-        WebcamHelper.closeWebcam();
+        if(!parseBoolean(getenv("IS_TRAVIS")))
+            WebcamHelper.closeWebcam();
     }
     
     @Test

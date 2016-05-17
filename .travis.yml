@@ -14,16 +14,26 @@
 # limitations under the License.
 
 language: java
-script: ./travis.sh
+script:
+  - wget http://ftp.ps.pl/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+  - tar xpf apache-maven-3.3.9-bin.tar.gz
+  - mv apache-maven-3.3.9 /tmp/
+  - ./travis.sh
 jdk:
-  - oraclejdk8
+- oraclejdk8
+
+sudo: required
+services:
+  - docker
 
 env:
   global:
-    - IS_TRAVIS=true
-    - SONATYPE_USERNAME=hekonsek
-    - secure: "KRg4Rl4tXs+JVdPPkwXSWH6rw8v5+//zUN6XSFHN1LuCeK2kF+6cwXiLrAPSeC675L6D4PFKa5Ko+SgGhFXMDSwG/NLHzKoImysNLiIDeDi/u/FMK2DA52U771TI05y6lKjW2uDn2Bhp5TPuQlXOUcOLrE+DL9s+DVm5jpjEZbA="
+  - IS_TRAVIS=true
+  - SONATYPE_USERNAME=hekonsek
+  - DOCKER_USERNAME=hekonsek
+  - secure: "LKaUaJSsccnEpbP5zWz5hC/2owP1/LBr0vOI83ZsvDBG6hzU8kPh3E/Nx9hj4b6n0boXO+wBd8KXm1ET9LAuZM+OvSnU+7lfOuc2S0CIBxMLAeFdNWmMLgRe3e28cnJH0Pz/9tgfmr5Ca7xd4bWkzZaPLHtJo65RPeGQyjCiaMQ="
+  - secure: "X6cTmXwaqGcInMwrL0R9hONSUep8U983oWyB30VMVY/9D5U9VmStsCJYs6nbNGqFYino5WvqNbd0PwxkmQOVfsS/qJYxawy1PTnljqppJVWZFo3XJKHze6aSVpMakK3fkScUTAp4j9kutHqhLn9hEKl6l/kri2P29tp30NmmMag="
 
 after_success:
-  - python addServer.py
-  - DEPLOY=true ./travis.sh
+- python addServer.py
+- DEPLOY=true ./travis.sh

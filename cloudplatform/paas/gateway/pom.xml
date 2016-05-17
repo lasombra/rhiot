@@ -5,12 +5,12 @@
 
 	<parent>
 		<groupId>io.rhiot</groupId>
-		<artifactId>rhiot-cloudplatform-paas</artifactId>
+		<artifactId>rhiot-cloud-paas</artifactId>
 		<version>0.1.5-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<name>Rhiot :: Cloud platform :: PaaS :: Gateway</name>
-	<artifactId>rhiot-cloudplatform-paas-gateway</artifactId>
+	<name>Rhiot :: Cloud :: PaaS :: Gateway</name>
+	<artifactId>rhiot-cloud-paas-gateway</artifactId>
 
 	<licenses>
 		<license>
@@ -31,6 +31,10 @@
 		</dependency>
 		<dependency>
 			<groupId>io.rhiot</groupId>
+			<artifactId>rhiot-cloudplatform-adapter-rest</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.rhiot</groupId>
 			<artifactId>rhiot-cloudplatform-encoding-json</artifactId>
 		</dependency>
 		<dependency>
@@ -39,27 +43,35 @@
 		</dependency>
 		<dependency>
 			<groupId>io.rhiot</groupId>
+			<artifactId>rhiot-cloudplatform-service-binary</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.rhiot</groupId>
 			<artifactId>rhiot-cloudplatform-service-camera</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.rhiot</groupId>
-			<artifactId>rhiot-datastream-document</artifactId>
+			<artifactId>rhiot-cloudplatform-service-device</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>io.rhiot</groupId>
+			<artifactId>rhiot-datastream-document-mongodb</artifactId>
+		</dependency>
+
+		<!-- AMQP broker (event bus) -->
 		<dependency>
 			<groupId>io.rhiot</groupId>
 			<artifactId>rhiot-spring-activemq</artifactId>
 		</dependency>
 
-		<!-- Testing -->
+		<!-- Sensors -->
 		<dependency>
-			<groupId>com.google.truth</groupId>
-			<artifactId>truth</artifactId>
-			<scope>test</scope>
+			<groupId>io.rhiot</groupId>
+			<artifactId>rhiot-sensor-camera</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<scope>test</scope>
+			<groupId>io.rhiot</groupId>
+			<artifactId>rhiot-sensor-device</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -72,24 +84,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>empty-javadoc-jar</id>
-						<phase>package</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-						<configuration>
-							<forceCreation>true</forceCreation>
-							<classifier>javadoc</classifier>
-							<classesDirectory>${basedir}/javadoc</classesDirectory>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
